@@ -13,7 +13,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @ToString
 public class AdminEntity implements Serializable {
-    private long adminId;
+    private Long adminId;
     private String adminName;
     private String libraryName;
     private String tell;

@@ -14,9 +14,9 @@ public interface AdminReadUseCase {
     @Getter
     @ToString
     class AdminFindQuery {
-        private long adminId;
+        private Long adminId;
 
-        public AdminFindQuery(long adminId) {
+        public AdminFindQuery(Long adminId) {
             this.adminId = adminId;
         }
     }
@@ -24,7 +24,7 @@ public interface AdminReadUseCase {
     @ToString
     @Builder
     class FindAdminResult {
-        private long adminId;
+        private Long adminId;
         private String adminName;
         private String libraryName;
         private String tell;

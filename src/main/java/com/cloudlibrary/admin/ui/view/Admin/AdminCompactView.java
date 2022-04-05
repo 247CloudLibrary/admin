@@ -15,7 +15,7 @@ import lombok.ToString;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AdminCompactView {
     @ApiModelProperty(value = "관리자 PK")
-    private final long adminId;
+    private final Long adminId;
     @ApiModelProperty(value = "관리자 이름")
     private final String adminName;
     @ApiModelProperty(value = "도서관 이름")

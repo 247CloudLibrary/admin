@@ -8,7 +8,7 @@ import lombok.ToString;
 @ToString
 @Builder
 public class Admin {
-    private long adminId;
+    private Long adminId;
     private String adminName;
     private String libraryName;
     private String tell;

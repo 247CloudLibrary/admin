@@ -10,7 +10,7 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 public class AdminUpdateRequest {
-    private long adminId;
+    private Long adminId;
     private String adminName;
     private String libraryName;
     private String tell;

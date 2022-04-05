@@ -16,7 +16,7 @@ public interface AdminOperationUseCase {
     @ToString
     class AdminCreatedCommand {
         private final String rid;
-        private final long libraryId;
+        private final Long libraryId;
         private final String isbn;
         private final String title;
         private final String thumbnailImage;
@@ -28,9 +28,9 @@ public interface AdminOperationUseCase {
     @Getter
     @ToString
     class AdminUpdateCommand {
-        private final long id;
+        private final Long id;
         private final String rid;
-        private final long libraryId;
+        private final Long libraryId;
         private final String isbn;
         private final String title;
         private final String thumbnailImage;
@@ -42,6 +42,6 @@ public interface AdminOperationUseCase {
     @Getter
     @ToString
     class AdminDeleteCommand {
-        private final long id;
+        private final Long id;
     }
 }

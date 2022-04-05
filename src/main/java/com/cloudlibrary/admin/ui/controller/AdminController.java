@@ -45,7 +45,7 @@ public class AdminController {
     @GetMapping("")
     public ResponseEntity<ApiResponseView<List<AdminView>>> getAdmins() {
         AdminView adminView1 = AdminView.builder()
-                .adminId(1)
+                .adminId(1L)
                 .adminName("김뭐뭐")
                 .libraryName("개포")
                 .tell("010-1010-1011")
@@ -53,7 +53,7 @@ public class AdminController {
                 .address("서울시 강남구 개포2동")
                 .build();
         AdminView adminView2 = AdminView.builder()
-                .adminId(2)
+                .adminId(2L)
                 .adminName("박뭐뭐")
                 .libraryName("역삼")
                 .tell("010-2202-2221")
@@ -70,14 +70,14 @@ public class AdminController {
 
     //관리자 정보 조회
     @GetMapping("/{id}")
-    public ResponseEntity<ApiResponseView<AdminView>> getadmin(@PathVariable("id") long id) {
+    public ResponseEntity<ApiResponseView<AdminView>> getadmin(@PathVariable("id") Long id) {
         //var query = new AdminReadUseCase.AdminFindQuery(id);
 
         //var result = AdminReadUseCase.getAdmin(query);
 
         //return ResponseEntity.ok(new ApiResponseView<>(new AdminView(result)));
         return ResponseEntity.ok(new ApiResponseView<>(AdminView.builder()
-                .adminId(1)
+                .adminId(1L)
                 .adminName("김뭐뭐")
                 .libraryName("개포")
                 .tell("010-1010-1011")
@@ -88,7 +88,7 @@ public class AdminController {
     }
 
     //관리자가입
-    @PostMapping("")
+    @PostMapping("signup")
     public ResponseEntity<ApiResponseView<AdminView>> createAdmin(@RequestBody AdminCreateRequest request) {
         if (ObjectUtils.isEmpty(request)) {
             throw new CloudLibraryException(MessageType.BAD_REQUEST);
@@ -107,7 +107,7 @@ public class AdminController {
 */
         //return ResponseEntity.ok(new ApiResponseView<>(new AdminView(result)));
         return ResponseEntity.ok(new ApiResponseView<>(AdminView.builder()
-                .adminId(1)
+                .adminId(1L)
                 .adminName("김뭐뭐")
                 .libraryName("개포")
                 .tell("010-1010-1011")
@@ -126,7 +126,7 @@ public class AdminController {
 
     //관리자 탈퇴
     @DeleteMapping("/withdraw")
-    public ResponseEntity<ApiResponseView<AdminCompactView>> deleteAdmin(@PathVariable("id") long id) {
+    public ResponseEntity<ApiResponseView<AdminCompactView>> deleteAdmin(@PathVariable("id") Long id) {
 
         return ResponseEntity.ok().build();
 

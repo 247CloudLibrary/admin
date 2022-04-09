@@ -69,8 +69,8 @@ public class AdminController {
     }
 
     //관리자 정보 조회
-    @GetMapping("/{id}")
-    public ResponseEntity<ApiResponseView<AdminView>> getadmin(@PathVariable("id") Long id) {
+    @GetMapping("/{adminId}")
+    public ResponseEntity<ApiResponseView<AdminView>> getAdmin(@PathVariable("adminId") Long adminId) {
         //var query = new AdminReadUseCase.AdminFindQuery(id);
 
         //var result = AdminReadUseCase.getAdmin(query);
@@ -117,38 +117,40 @@ public class AdminController {
         ));
     }
 
+    //로그인
+    @PostMapping("/signin")
+    public ResponseEntity<ApiResponseView<AdminView>> login(@RequestBody AdminCreateRequest request) {
+        return ResponseEntity.ok().build();
+    }
+
     //관리자 정보 수정
-    @PutMapping("/update-state")
-    public ResponseEntity<ApiResponseView<AdminCompactView>> updateAdmin(@RequestBody AdminUpdateRequest request) {
+    @PatchMapping("/update-state/{adminId}")
+    public ResponseEntity<ApiResponseView<AdminCompactView>> updateAdmin(@RequestBody AdminUpdateRequest request, @PathVariable("adminId") Long adminId) {
 
         return ResponseEntity.ok().build();
     }
 
     //관리자 탈퇴
-    @DeleteMapping("/withdraw")
-    public ResponseEntity<ApiResponseView<AdminCompactView>> deleteAdmin(@PathVariable("id") Long id) {
+    @DeleteMapping("/withdraw/{adminId}")
+    public ResponseEntity<ApiResponseView<AdminCompactView>> deleteAdmin(@PathVariable("adminId") Long adminId) {
 
         return ResponseEntity.ok().build();
 
     }
 
-    //로그인
-    @PostMapping("/login")
-    public ResponseEntity<ApiResponseView<AdminView>> login(@RequestBody AdminCreateRequest request) {
-        return ResponseEntity.ok().build();
-    }
+
 
 
 
     //아이디 찾기
-    @GetMapping("/findid")
-    public ResponseEntity<ApiResponseView<AdminView>> findId(@RequestBody AdminFindIdRequest request) {
+    @PostMapping("/findid/{adminId}")
+    public ResponseEntity<ApiResponseView<AdminView>> findId(@RequestBody AdminFindIdRequest request, @PathVariable("adminId") Long adminId) {
         return ResponseEntity.ok(new ApiResponseView<>(AdminView.builder().id("myid").build()));
     }
 
     //비밀번호 찾기기
-    @PostMapping("/findpw")
-    public ResponseEntity<ApiResponseView<AdminView>> findPw(@RequestBody AdminFindPwRequest request) {
+    @PatchMapping("/findpw/{adminId}")
+    public ResponseEntity<ApiResponseView<AdminView>> findPw(@RequestBody AdminFindPwRequest request, @PathVariable("adminId") Long adminId) {
         return ResponseEntity.ok(new ApiResponseView<>(AdminView.builder().pw("mypw").build()));
     }
 

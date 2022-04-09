@@ -1,0 +1,44 @@
+package com.cloudlibrary.admin.ui.view.Admin;
+
+import com.cloudlibrary.admin.application.service.AdminReadUseCase;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.ToString;
+
+@AllArgsConstructor
+@Getter
+@Builder
+@ToString
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class AdminView {
+    @ApiModelProperty(value = "관리자 PK")
+    private final Long adminId;
+    @ApiModelProperty(value = "관리자 이름")
+    private final String adminName;
+    @ApiModelProperty(value = "도서관 이름")
+    private final String libraryName;
+    @ApiModelProperty(value = "전화번호")
+    private final String tell;
+    @ApiModelProperty(value = "이메일주소")
+    private final String email;
+    @ApiModelProperty(value = "도서관주소")
+    private final String address;
+    @ApiModelProperty(value = "관리자 접속 ID")
+    private final String id;
+    @ApiModelProperty(value = "관리자 접속 PW")
+    private final String pw;
+
+    public AdminView(AdminReadUseCase.FindAdminResult result) {
+        this.adminId = getAdminId();
+        this.adminName = getAdminName();
+        this.libraryName = getLibraryName();
+        this.tell = getTell();
+        this.email = getEmail();
+        this.address = getAddress();
+        this.id = getId();
+        this.pw = getPw();
+    }
+}

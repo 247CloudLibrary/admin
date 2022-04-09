@@ -39,7 +39,10 @@ public class AdminController {
     }
      */
 
-
+    @GetMapping("/hello")
+    public ResponseEntity<String> hello(){
+        return ResponseEntity.ok("hello");
+    }
 
     //관리자 전체 조회
     @GetMapping("")

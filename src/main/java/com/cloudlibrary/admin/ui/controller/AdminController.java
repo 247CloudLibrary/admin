@@ -88,7 +88,7 @@ public class AdminController {
     }
 
     //관리자가입
-    @PostMapping("signup")
+    @PostMapping("/signup")
     public ResponseEntity<ApiResponseView<AdminView>> createAdmin(@RequestBody AdminCreateRequest request) {
         if (ObjectUtils.isEmpty(request)) {
             throw new CloudLibraryException(MessageType.BAD_REQUEST);

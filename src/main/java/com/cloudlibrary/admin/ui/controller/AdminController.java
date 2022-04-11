@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
 @Api(value = "관리자 API")
 @RequestMapping("/v1/admin")
 public class AdminController {
-    /*
+
     private final AdminOperationUseCase adminOperationUseCase;
     private final AdminReadUseCase adminReadUseCase;
 
@@ -37,7 +37,7 @@ public class AdminController {
         this.adminOperationUseCase = adminOperationUseCase;
         this.adminReadUseCase = adminReadUseCase;
     }
-     */
+
 
     @GetMapping("/hello")
     public ResponseEntity<String> hello(){
@@ -47,28 +47,8 @@ public class AdminController {
     //관리자 전체 조회
     @GetMapping("")
     public ResponseEntity<ApiResponseView<List<AdminView>>> getAdmins() {
-        AdminView adminView1 = AdminView.builder()
-                .adminId(1L)
-                .adminName("김뭐뭐")
-                .libraryName("개포")
-                .tell("010-1010-1011")
-                .email("abccd@hhaa.com")
-                .address("서울시 강남구 개포2동")
-                .build();
-        AdminView adminView2 = AdminView.builder()
-                .adminId(2L)
-                .adminName("박뭐뭐")
-                .libraryName("역삼")
-                .tell("010-2202-2221")
-                .email("zzzgg@eeff.net")
-                .address("서울시 강남구 역삼동")
-                .build();
-        List<AdminView> adminView = new ArrayList<>();
-        adminView.add(adminView1);
-        adminView.add(adminView2);
-
-        //return ResponseEntity.ok(new ApiResponseView<>(results.stream().map(AdminView::new).collect(Collectors.toList())));
-        return ResponseEntity.ok(new ApiResponseView<>(adminView));
+        var results = adminReadUseCase.getAdminListAll();
+        return ResponseEntity.ok(new ApiResponseView<>(results.stream().map(AdminView::new).collect(Collectors.toList())));
     }
 
     //관리자 정보 조회
@@ -96,28 +76,18 @@ public class AdminController {
         if (ObjectUtils.isEmpty(request)) {
             throw new CloudLibraryException(MessageType.BAD_REQUEST);
         }
-/*
+
         var command = AdminOperationUseCase.AdminCreatedCommand.builder()
-                .rid(request.getRid())
-                .libraryId(request.getLibraryId())
-                .isbn(request.getIsbn())
-                .title(request.getTitle())
-                .thumbnailImage(request.getThumbnailImage())
-                .coverImage(request.getCoverImage())
+                .adminName(request.getAdminName())
+                .libraryName(request.getLibraryName())
+                .tell(request.getTell())
+                .email(request.getEmail())
+                .address(request.getAddress())
                 .build();
 
-        var result = AdminOperationUseCase.createAdmin(command);
-*/
-        //return ResponseEntity.ok(new ApiResponseView<>(new AdminView(result)));
-        return ResponseEntity.ok(new ApiResponseView<>(AdminView.builder()
-                .adminId(1L)
-                .adminName("김뭐뭐")
-                .libraryName("개포")
-                .tell("010-1010-1011")
-                .email("abccd@hhaa.com")
-                .address("서울시 강남구 개포2동")
-                .build()
-        ));
+        var result = adminOperationUseCase.createAdmin(command);
+
+        return ResponseEntity.ok(new ApiResponseView<>(new AdminView(result)));
     }
 
     //로그인

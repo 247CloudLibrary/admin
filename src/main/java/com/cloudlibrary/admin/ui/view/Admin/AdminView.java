@@ -3,12 +3,11 @@ package com.cloudlibrary.admin.ui.view.Admin;
 import com.cloudlibrary.admin.application.service.AdminReadUseCase;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.AllArgsConstructor;
+
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
-@AllArgsConstructor
 @Getter
 @Builder
 @ToString

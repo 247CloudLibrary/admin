@@ -2,7 +2,6 @@ package com.cloudlibrary.admin.application.service;
 
 import com.cloudlibrary.admin.application.domain.Admin;
 import lombok.*;
-
 import java.util.List;
 
 public interface AdminReadUseCase {

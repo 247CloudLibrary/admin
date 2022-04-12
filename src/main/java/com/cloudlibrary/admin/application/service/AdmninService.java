@@ -45,7 +45,6 @@ public class AdmninService implements AdminOperationUseCase, AdminReadUseCase{
 
     @Override
     public List<FindAdminResult> getAdminListAll() {
-        //return adminEntityRepository.findAdminAll().stream().map(FindAdminResult::findByAdmin).collect(Collectors.toList());
         return adminMapper.findAdminAll().stream().map(FindAdminResult::findByAdmin).collect(Collectors.toList());
     }
 

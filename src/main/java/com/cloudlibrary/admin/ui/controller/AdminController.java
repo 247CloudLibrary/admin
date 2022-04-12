@@ -48,6 +48,16 @@ public class AdminController {
     @GetMapping("")
     public ResponseEntity<ApiResponseView<List<AdminView>>> getAdmins() {
         var results = adminReadUseCase.getAdminListAll();
+        /*
+        List<AdminView> adminViews = new ArrayList<>();
+
+        for(AdminReadUseCase.FindAdminResult value : results){
+            adminViews.add(new AdminView(value));
+            System.out.println(value);
+        }
+        System.out.println(adminViews);
+        return ResponseEntity.ok(new ApiResponseView<>(adminViews));
+        */
         return ResponseEntity.ok(new ApiResponseView<>(results.stream().map(AdminView::new).collect(Collectors.toList())));
     }
 

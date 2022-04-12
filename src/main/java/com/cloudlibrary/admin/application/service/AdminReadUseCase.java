@@ -29,6 +29,8 @@ public interface AdminReadUseCase {
         private String tell;
         private String email;
         private String address;
+        private String id;
+        private String pw;
 
         public static FindAdminResult findByAdmin(Admin admin) {
             return FindAdminResult.builder()
@@ -38,6 +40,8 @@ public interface AdminReadUseCase {
                     .tell(admin.getTell())
                     .email(admin.getEmail())
                     .address(admin.getAddress())
+                    .id(admin.getId())
+                    .pw(admin.getPw())
                     .build();
         }
     }

@@ -4,10 +4,12 @@ import com.cloudlibrary.admin.application.service.AdminReadUseCase;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModelProperty;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
+@AllArgsConstructor
 @Getter
 @Builder
 @ToString
@@ -31,13 +33,16 @@ public class AdminView {
     private final String pw;
 
     public AdminView(AdminReadUseCase.FindAdminResult result) {
-        this.adminId = getAdminId();
-        this.adminName = getAdminName();
-        this.libraryName = getLibraryName();
-        this.tell = getTell();
-        this.email = getEmail();
-        this.address = getAddress();
-        this.id = getId();
-        this.pw = getPw();
+        this.adminId = result.getAdminId();
+        this.adminName = result.getAdminName();
+        this.libraryName = result.getLibraryName();
+        this.tell = result.getTell();
+        this.email = result.getEmail();
+        this.address = result.getAddress();
+        this.id = result.getId();
+        this.pw = result.getPw();
     }
+
+
+
 }

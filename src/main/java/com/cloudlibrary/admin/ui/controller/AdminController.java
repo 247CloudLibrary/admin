@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Slf4j
+@CrossOrigin(origins = "*")
 @RestController
 @Api(value = "관리자 API")
 @RequestMapping("/v1/admin")

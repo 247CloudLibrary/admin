@@ -32,13 +32,13 @@ public class AdminEntity implements Serializable {
     @Column(nullable=false)
     private String tell;
 
-    @Column(nullable=false)
+    @Column(nullable=false, unique = true)
     private String email;
 
     @Column(nullable=false)
     private String address;
 
-    @Column(nullable=false)
+    @Column(nullable=false, unique = true)
     private String id;
 
     @Column(nullable=false)

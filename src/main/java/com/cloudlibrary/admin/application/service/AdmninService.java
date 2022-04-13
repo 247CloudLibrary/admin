@@ -8,9 +8,13 @@ import com.cloudlibrary.admin.infrastructure.persistence.mysql.entity.AdminEntit
 import com.cloudlibrary.admin.infrastructure.persistence.mysql.repository.AdminEntityRepository;
 import com.cloudlibrary.admin.ui.requestBody.AdminFindPwRequest;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -21,6 +25,9 @@ public class AdmninService implements AdminOperationUseCase, AdminReadUseCase{
 
     private final AdminEntityRepository adminEntityRepository;
     private final AdminMapper adminMapper;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     @Autowired
     public AdmninService(AdminEntityRepository adminEntityRepository
@@ -58,6 +65,7 @@ public class AdmninService implements AdminOperationUseCase, AdminReadUseCase{
                 .pw(command.getPw())
                 .build();
         AdminEntity adminEntity = new AdminEntity(admin);
+        adminEntity.setEncryptedPw(passwordEncoder.encode(admin.getPw()));
         adminEntityRepository.save(adminEntity);
 
         //Entity -> Admin -> FindAdminResult
@@ -67,27 +75,20 @@ public class AdmninService implements AdminOperationUseCase, AdminReadUseCase{
 
     @Override
     public FindAdminResult updateAdmin(AdminUpdateCommand command) {
-        //영속성 때문에 일단 조회
-        adminEntityRepository.findById(command.getAdminId());
+        Optional<AdminEntity> adminEntity = adminEntityRepository.findById(command.getAdminId());
 
-        //command -> Admin -> Entity
-        Admin admin = Admin.builder()
-                .adminId(command.getAdminId())
-                .adminName(command.getAdminName())
-                .libraryName(command.getLibraryName())
-                .tell(command.getTell())
-                .email(command.getEmail())
-                .address(command.getAddress())
-                .id(command.getId())
-                .pw(command.getPw())
-                .build();
-        System.out.println(admin);
-        AdminEntity adminEntity = new AdminEntity(admin);
-        System.out.println(adminEntity);
-        adminEntityRepository.save(adminEntity);
+        ModelMapper mapper = new ModelMapper();
+        mapper.getConfiguration().setSkipNullEnabled(true);
+
+        mapper.map(command, adminEntity.get());
+
+        if(command.getPw()!=null){
+            adminEntity.get().setEncryptedPw(passwordEncoder.encode(command.getPw()));
+        }
+        adminEntityRepository.save(adminEntity.get());
 
         //Entity -> Admin -> FindAdminResult
-        admin = adminEntity.toAdmin();
+        Admin admin = adminEntity.get().toAdmin();
         return FindAdminResult.findByAdmin(admin);
     }
 
@@ -110,13 +111,13 @@ public class AdmninService implements AdminOperationUseCase, AdminReadUseCase{
     }
 
     @Override
-    public boolean isValidIdAndEmail(AdminFindPwRequest request) {
+    public Long isValidIdAndEmail(AdminFindPwRequest request) {
         Optional<Admin> resultId = adminMapper.findAdminById(request.getId());
         Optional<Admin> resultEmail = adminMapper.findAdminByEmail(request.getEmail());
         if(resultId.get().getAdminId() == resultEmail.get().getAdminId()){
-            return true;
+            return resultId.get().getAdminId();
         } else {
-            return false;
+            return 0L;
         }
 
     }

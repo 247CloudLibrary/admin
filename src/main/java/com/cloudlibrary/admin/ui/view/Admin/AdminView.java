@@ -29,8 +29,9 @@ public class AdminView {
     private final String address;
     @ApiModelProperty(value = "관리자 접속 ID")
     private final String id;
-    @ApiModelProperty(value = "관리자 접속 PW")
-    private final String pw;
+    @ApiModelProperty(value = "바꾼 비밀번호")
+    private final String changePassword;
+
 
     public AdminView(AdminReadUseCase.FindAdminResult result) {
         this.adminId = result.getAdminId();
@@ -40,9 +41,7 @@ public class AdminView {
         this.email = result.getEmail();
         this.address = result.getAddress();
         this.id = result.getId();
-        this.pw = result.getPw();
+        this.changePassword = result.getChangePassword();
     }
-
-
 
 }

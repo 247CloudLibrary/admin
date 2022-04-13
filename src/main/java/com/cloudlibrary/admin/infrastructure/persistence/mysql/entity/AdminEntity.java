@@ -42,9 +42,6 @@ public class AdminEntity implements Serializable {
     private String id;
 
     @Column(nullable=false)
-    private String pw;
-
-    @Column(nullable=false)
     private String encryptedPw;
 
     public Admin toAdmin() {
@@ -56,7 +53,6 @@ public class AdminEntity implements Serializable {
                 .email(getEmail())
                 .address(getAddress())
                 .id(getId())
-                .id(getPw())
                 .build();
 
     }
@@ -68,6 +64,5 @@ public class AdminEntity implements Serializable {
         this.email = admin.getEmail();
         this.address = admin.getAddress();
         this.id = admin.getId();
-        this.pw = admin.getPw();
     }
 }

@@ -1,5 +1,6 @@
 package com.cloudlibrary.admin.ui.controller;
 
+import com.cloudlibrary.admin.application.domain.Admin;
 import com.cloudlibrary.admin.application.service.AdminOperationUseCase;
 import com.cloudlibrary.admin.application.service.AdminReadUseCase;
 import com.cloudlibrary.admin.exception.CloudLibraryException;
@@ -99,7 +100,6 @@ public class AdminController {
                 .id(request.getId())
                 .pw(request.getPw())
                 .build();
-        System.out.println(command);
         var result = adminOperationUseCase.updateAdmin(command);
 
         return ResponseEntity.ok(new ApiResponseView<>(new AdminView(result)));
@@ -124,17 +124,23 @@ public class AdminController {
 
         return ResponseEntity.ok(new ApiResponseView<>(new AdminView(result)));
     }
-/*
+
     @PatchMapping("/findpw")
     public ResponseEntity<ApiResponseView<AdminView>> findPw(@RequestBody AdminFindPwRequest request) {
-        boolean bool = adminReadUseCase.isValidIdAndEmail(request);
+        Long adminId = adminReadUseCase.isValidIdAndEmail(request);
 
-        if(!bool){
-            ResponseEntity.ok(new ApiResponseView<>(false));
+        if (adminId == 0L) {
+            return ResponseEntity.noContent().build();
         } else {
+            double doubleValue = Math.random();
+            int intValue = (int) (doubleValue * 100000000);
 
-
-
+            var command = AdminOperationUseCase.AdminUpdateCommand.builder()
+                    .adminId(adminId)
+                    .pw(Integer.toString(intValue))
+                    .build();
+            AdminReadUseCase.FindAdminResult result = adminOperationUseCase.updateAdmin(command);
+            result.setChangePassword(Integer.toString(intValue));
 
             return ResponseEntity.ok(new ApiResponseView<>(new AdminView(result)));
         }
@@ -143,6 +149,8 @@ public class AdminController {
 
     }
 
- */
+
+
+
 
 }

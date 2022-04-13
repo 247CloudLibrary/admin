@@ -9,7 +9,7 @@ public interface AdminReadUseCase {
     List<FindAdminResult> getAdminListAll();
     FindAdminResult getAdmin(AdminFindQuery query);
     FindAdminResult getAdminByEmail(String email);
-    boolean isValidIdAndEmail(AdminFindPwRequest request);
+    Long isValidIdAndEmail(AdminFindPwRequest request);
 
     @NoArgsConstructor
     @EqualsAndHashCode(callSuper = false)
@@ -22,6 +22,8 @@ public interface AdminReadUseCase {
             this.adminId = adminId;
         }
     }
+
+    @Setter
     @Getter
     @ToString
     @Builder
@@ -33,7 +35,7 @@ public interface AdminReadUseCase {
         private String email;
         private String address;
         private String id;
-        private String pw;
+        private String changePassword;
 
         public static FindAdminResult findByAdmin(Admin admin) {
             return FindAdminResult.builder()
@@ -44,7 +46,6 @@ public interface AdminReadUseCase {
                     .email(admin.getEmail())
                     .address(admin.getAddress())
                     .id(admin.getId())
-                    .pw(admin.getPw())
                     .build();
 
         }

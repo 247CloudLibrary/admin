@@ -1,13 +1,10 @@
 package com.cloudlibrary.admin.infrastructure.persistence.mysql.repository;
 
-import com.cloudlibrary.admin.application.domain.Admin;
-import org.apache.ibatis.annotations.Mapper;
+import com.cloudlibrary.admin.infrastructure.persistence.mysql.entity.AdminEntity;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
-import java.util.Optional;
+@Repository
+public interface AdminEntityRepository extends CrudRepository<AdminEntity, Long> {
 
-@Mapper
-public interface AdminEntityRepository {
-    //Optional<Admin> findAdminById(Long bookId);
-    //List<Admin> findAdminAll();
 }

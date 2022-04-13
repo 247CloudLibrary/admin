@@ -7,7 +7,7 @@ import lombok.ToString;
 
 public interface AdminOperationUseCase {
     AdminReadUseCase.FindAdminResult createAdmin(AdminCreatedCommand command);
-    void updateAdmin(AdminUpdateCommand command);
+    AdminReadUseCase.FindAdminResult updateAdmin(AdminUpdateCommand command);
     void deleteAdmin(AdminDeleteCommand command);
 
     @EqualsAndHashCode(callSuper = false)
@@ -22,6 +22,7 @@ public interface AdminOperationUseCase {
         private String address;
         private String id;
         private String pw;
+
     }
 
     @EqualsAndHashCode(callSuper = false)

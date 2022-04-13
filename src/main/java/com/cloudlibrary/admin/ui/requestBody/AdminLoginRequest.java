@@ -9,12 +9,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @NoArgsConstructor
-public class AdminCreateRequest {
-    private String adminName;
-    private String libraryName;
-    private String tell;
-    private String email;
-    private String address;
+public class AdminLoginRequest {
     private String id;
     private String pw;
 }

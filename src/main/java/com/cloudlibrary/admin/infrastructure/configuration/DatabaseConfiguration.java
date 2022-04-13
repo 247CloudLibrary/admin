@@ -2,6 +2,7 @@ package com.cloudlibrary.admin.infrastructure.configuration;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import io.swagger.annotations.Api;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -13,6 +14,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
 import javax.sql.DataSource;
+import java.util.Properties;
 
 @Configuration
 @PropertySource("classpath:/application.properties")
@@ -33,7 +35,6 @@ public class DatabaseConfiguration {
         return dataSource;
     }
 
-    // 데이터베이스와의 연결과 SQL 실행에 대한 것을 가지고 있는 객체
     @Bean
     public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
@@ -53,5 +54,13 @@ public class DatabaseConfiguration {
     @ConfigurationProperties(prefix="mybatis.configuration")
     public org.apache.ibatis.session.Configuration mybatisConfig() {
         return new org.apache.ibatis.session.Configuration();
+    }
+
+
+
+    @Bean
+    @ConfigurationProperties(prefix="spring.jpa")
+    public Properties hibernateConfig() {
+        return new Properties();
     }
 }

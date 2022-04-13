@@ -8,6 +8,8 @@ import java.util.Optional;
 
 @Mapper
 public interface AdminMapper {
-    Optional<Admin> findAdminById(Long bookId);
+    Optional<Admin> findAdminByAdminId(Long adminId);
     List<Admin> findAdminAll();
+    Optional<Admin> findAdminByEmail(String email);
+    Optional<Admin> findAdminById(String id);
 }

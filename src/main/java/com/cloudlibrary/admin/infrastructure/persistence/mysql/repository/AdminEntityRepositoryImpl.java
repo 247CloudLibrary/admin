@@ -6,10 +6,10 @@ import org.springframework.stereotype.Repository;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-
+    /*
 @Repository
 public class AdminEntityRepositoryImpl implements AdminEntityRepository {
-    /*
+
     @Override
 
     public Optional<Admin> findAdminById(Long adminId) {
@@ -20,6 +20,8 @@ public class AdminEntityRepositoryImpl implements AdminEntityRepository {
     public List<Admin> findAdminAll() {
         return Collections.emptyList();
     }
-    */
+
 
 }
+
+     */

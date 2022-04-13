@@ -1,12 +1,15 @@
 package com.cloudlibrary.admin.application.service;
 
 import com.cloudlibrary.admin.application.domain.Admin;
+import com.cloudlibrary.admin.ui.requestBody.AdminFindPwRequest;
 import lombok.*;
 import java.util.List;
 
 public interface AdminReadUseCase {
     List<FindAdminResult> getAdminListAll();
     FindAdminResult getAdmin(AdminFindQuery query);
+    FindAdminResult getAdminByEmail(String email);
+    boolean isValidIdAndEmail(AdminFindPwRequest request);
 
     @NoArgsConstructor
     @EqualsAndHashCode(callSuper = false)
@@ -43,6 +46,7 @@ public interface AdminReadUseCase {
                     .id(admin.getId())
                     .pw(admin.getPw())
                     .build();
+
         }
     }
 }

@@ -9,9 +9,21 @@
         ]]>
     </select>
 
-    <select id="findAdminById" resultType="com.cloudlibrary.admin.application.domain.Admin">
+    <select id="findAdminByAdminId" resultType="com.cloudlibrary.admin.application.domain.Admin" parameterType="Long">
        <![CDATA[
-        select * from admin
+        select * from admin where admin_id=#{adminId}
+        ]]>
+    </select>
+
+    <select id="findAdminByEmail" resultType="com.cloudlibrary.admin.application.domain.Admin" parameterType="String">
+       <![CDATA[
+        select * from admin where email=#{email}
+        ]]>
+    </select>
+
+    <select id="findAdminById" resultType="com.cloudlibrary.admin.application.domain.Admin" parameterType="String">
+       <![CDATA[
+        select * from admin where id=#{id}
         ]]>
     </select>
 

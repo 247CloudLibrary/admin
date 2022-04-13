@@ -1,13 +1,15 @@
 package com.cloudlibrary.admin.application.service;
 
 import com.cloudlibrary.admin.application.domain.Admin;
+import com.cloudlibrary.admin.ui.requestBody.AdminFindPwRequest;
 import lombok.*;
-
 import java.util.List;
 
 public interface AdminReadUseCase {
     List<FindAdminResult> getAdminListAll();
     FindAdminResult getAdmin(AdminFindQuery query);
+    FindAdminResult getAdminByEmail(String email);
+    Long isValidIdAndEmail(AdminFindPwRequest request);
 
     @NoArgsConstructor
     @EqualsAndHashCode(callSuper = false)
@@ -20,6 +22,8 @@ public interface AdminReadUseCase {
             this.adminId = adminId;
         }
     }
+
+    @Setter
     @Getter
     @ToString
     @Builder
@@ -30,6 +34,8 @@ public interface AdminReadUseCase {
         private String tell;
         private String email;
         private String address;
+        private String id;
+        private String changePassword;
 
         public static FindAdminResult findByAdmin(Admin admin) {
             return FindAdminResult.builder()
@@ -39,7 +45,9 @@ public interface AdminReadUseCase {
                     .tell(admin.getTell())
                     .email(admin.getEmail())
                     .address(admin.getAddress())
+                    .id(admin.getId())
                     .build();
+
         }
     }
 }

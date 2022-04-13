@@ -7,7 +7,7 @@ import lombok.ToString;
 
 public interface AdminOperationUseCase {
     AdminReadUseCase.FindAdminResult createAdmin(AdminCreatedCommand command);
-    void updateAdmin(AdminUpdateCommand command);
+    AdminReadUseCase.FindAdminResult updateAdmin(AdminUpdateCommand command);
     void deleteAdmin(AdminDeleteCommand command);
 
     @EqualsAndHashCode(callSuper = false)
@@ -15,12 +15,14 @@ public interface AdminOperationUseCase {
     @Getter
     @ToString
     class AdminCreatedCommand {
-        private final String rid;
-        private final Long libraryId;
-        private final String isbn;
-        private final String title;
-        private final String thumbnailImage;
-        private final String coverImage;
+        private String adminName;
+        private String libraryName;
+        private String tell;
+        private String email;
+        private String address;
+        private String id;
+        private String pw;
+
     }
 
     @EqualsAndHashCode(callSuper = false)
@@ -28,13 +30,14 @@ public interface AdminOperationUseCase {
     @Getter
     @ToString
     class AdminUpdateCommand {
-        private final Long id;
-        private final String rid;
-        private final Long libraryId;
-        private final String isbn;
-        private final String title;
-        private final String thumbnailImage;
-        private final String coverImage;
+        private Long adminId;
+        private String adminName;
+        private String libraryName;
+        private String tell;
+        private String email;
+        private String address;
+        private String id;
+        private String pw;
     }
 
     @EqualsAndHashCode(callSuper = false)
@@ -42,6 +45,6 @@ public interface AdminOperationUseCase {
     @Getter
     @ToString
     class AdminDeleteCommand {
-        private final Long id;
+        private Long adminId;
     }
 }

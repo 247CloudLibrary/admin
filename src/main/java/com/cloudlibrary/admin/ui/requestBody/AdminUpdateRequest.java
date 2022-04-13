@@ -16,4 +16,6 @@ public class AdminUpdateRequest {
     private String tell;
     private String email;
     private String address;
+    private String id;
+    private String pw;
 }

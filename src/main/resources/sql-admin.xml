@@ -21,7 +21,7 @@
         ]]>
     </select>
 
-    <select id="findAdminById" resultType="com.cloudlibrary.admin.application.domain.Admin" parameterType="String">
+    <select id="findAdminById" resultType="com.cloudlibrary.admin.infrastructure.persistence.mysql.entity.AdminEntity" parameterType="String">
        <![CDATA[
         select * from admin where id=#{id}
         ]]>

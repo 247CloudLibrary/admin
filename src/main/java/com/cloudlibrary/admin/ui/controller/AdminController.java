@@ -4,10 +4,7 @@ import com.cloudlibrary.admin.application.service.AdminOperationUseCase;
 import com.cloudlibrary.admin.application.service.AdminReadUseCase;
 import com.cloudlibrary.admin.exception.CloudLibraryException;
 import com.cloudlibrary.admin.exception.MessageType;
-import com.cloudlibrary.admin.ui.requestBody.AdminCreateRequest;
-import com.cloudlibrary.admin.ui.requestBody.AdminFindIdRequest;
-import com.cloudlibrary.admin.ui.requestBody.AdminFindPwRequest;
-import com.cloudlibrary.admin.ui.requestBody.AdminUpdateRequest;
+import com.cloudlibrary.admin.ui.requestBody.*;
 import com.cloudlibrary.admin.ui.view.Admin.AdminCompactView;
 import com.cloudlibrary.admin.ui.view.Admin.AdminView;
 import com.cloudlibrary.admin.ui.view.ApiResponseView;
@@ -18,6 +15,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -62,7 +61,7 @@ public class AdminController {
         var command = AdminOperationUseCase.AdminCreatedCommand.builder()
                 .adminName(request.getAdminName())
                 .libraryName(request.getLibraryName())
-                .tell(request.getTell())
+                .tel(request.getTel())
                 .email(request.getEmail())
                 .address(request.getAddress())
                 .id(request.getId())
@@ -73,14 +72,13 @@ public class AdminController {
         return ResponseEntity.ok(new ApiResponseView<>(new AdminView(result)));
     }
 
-
-
-    @PostMapping("/signin")
-    public ResponseEntity<ApiResponseView<AdminView>> login(@RequestBody AdminCreateRequest request) {
+    @GetMapping("/signout")
+    public ResponseEntity<ApiResponseView<AdminView>> signout(HttpServletResponse response) {
+        Cookie cookie = new Cookie("token", null);
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
         return ResponseEntity.ok().build();
     }
-
-
 
 
 
@@ -92,7 +90,7 @@ public class AdminController {
                 .adminId(request.getAdminId())
                 .adminName(request.getAdminName())
                 .libraryName(request.getLibraryName())
-                .tell(request.getTell())
+                .tel(request.getTel())
                 .email(request.getEmail())
                 .address(request.getAddress())
                 .id(request.getId())

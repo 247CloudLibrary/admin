@@ -15,6 +15,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -71,8 +73,10 @@ public class AdminController {
     }
 
     @GetMapping("/signout")
-    public ResponseEntity<ApiResponseView<AdminView>> logout() {
-
+    public ResponseEntity<ApiResponseView<AdminView>> signout(HttpServletResponse response) {
+        Cookie cookie = new Cookie("token", null);
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
         return ResponseEntity.ok().build();
     }
 

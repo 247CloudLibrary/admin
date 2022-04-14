@@ -70,7 +70,6 @@ public class AdminService implements AdminOperationUseCase, AdminReadUseCase {
         adminEntity.setEncryptedPw(SecurityConfig.passwordEncoder().encode(admin.getPw()));
         adminEntityRepository.save(adminEntity);
 
-        //Entity -> Admin -> FindAdminResult
         admin = adminEntity.toAdmin();
         return FindAdminResult.findByAdmin(admin);
     }
@@ -89,7 +88,6 @@ public class AdminService implements AdminOperationUseCase, AdminReadUseCase {
         }
         adminEntityRepository.save(adminEntity.get());
 
-        //Entity -> Admin -> FindAdminResult
         Admin admin = adminEntity.get().toAdmin();
         return FindAdminResult.findByAdmin(admin);
     }

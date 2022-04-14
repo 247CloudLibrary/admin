@@ -30,7 +30,7 @@ public class AdminEntity implements Serializable {
     private String libraryName;
 
     @Column(nullable=false)
-    private String tell;
+    private String tel;
 
     @Column(nullable=false, unique = true)
     private String email;
@@ -49,7 +49,7 @@ public class AdminEntity implements Serializable {
                 .adminId(getAdminId())
                 .adminName(getAdminName())
                 .libraryName(getLibraryName())
-                .tell(getTell())
+                .tel(getTel())
                 .email(getEmail())
                 .address(getAddress())
                 .id(getId())
@@ -60,7 +60,7 @@ public class AdminEntity implements Serializable {
         this.adminId = admin.getAdminId();
         this.adminName = admin.getAdminName();
         this.libraryName = admin.getLibraryName();
-        this.tell = admin.getTell();
+        this.tel = admin.getTel();
         this.email = admin.getEmail();
         this.address = admin.getAddress();
         this.id = admin.getId();

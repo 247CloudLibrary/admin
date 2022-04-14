@@ -12,7 +12,7 @@ import lombok.ToString;
 public class AdminCreateRequest {
     private String adminName;
     private String libraryName;
-    private String tell;
+    private String tel;
     private String email;
     private String address;
     private String id;

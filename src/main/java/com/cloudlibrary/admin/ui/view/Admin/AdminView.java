@@ -22,7 +22,7 @@ public class AdminView {
     @ApiModelProperty(value = "도서관 이름")
     private final String libraryName;
     @ApiModelProperty(value = "전화번호")
-    private final String tell;
+    private final String tel;
     @ApiModelProperty(value = "이메일주소")
     private final String email;
     @ApiModelProperty(value = "도서관주소")
@@ -37,7 +37,7 @@ public class AdminView {
         this.adminId = result.getAdminId();
         this.adminName = result.getAdminName();
         this.libraryName = result.getLibraryName();
-        this.tell = result.getTell();
+        this.tel = result.getTel();
         this.email = result.getEmail();
         this.address = result.getAddress();
         this.id = result.getId();

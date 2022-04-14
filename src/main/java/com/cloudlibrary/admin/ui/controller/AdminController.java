@@ -4,10 +4,7 @@ import com.cloudlibrary.admin.application.service.AdminOperationUseCase;
 import com.cloudlibrary.admin.application.service.AdminReadUseCase;
 import com.cloudlibrary.admin.exception.CloudLibraryException;
 import com.cloudlibrary.admin.exception.MessageType;
-import com.cloudlibrary.admin.ui.requestBody.AdminCreateRequest;
-import com.cloudlibrary.admin.ui.requestBody.AdminFindIdRequest;
-import com.cloudlibrary.admin.ui.requestBody.AdminFindPwRequest;
-import com.cloudlibrary.admin.ui.requestBody.AdminUpdateRequest;
+import com.cloudlibrary.admin.ui.requestBody.*;
 import com.cloudlibrary.admin.ui.view.Admin.AdminCompactView;
 import com.cloudlibrary.admin.ui.view.Admin.AdminView;
 import com.cloudlibrary.admin.ui.view.ApiResponseView;
@@ -62,7 +59,7 @@ public class AdminController {
         var command = AdminOperationUseCase.AdminCreatedCommand.builder()
                 .adminName(request.getAdminName())
                 .libraryName(request.getLibraryName())
-                .tell(request.getTell())
+                .tel(request.getTel())
                 .email(request.getEmail())
                 .address(request.getAddress())
                 .id(request.getId())
@@ -73,14 +70,11 @@ public class AdminController {
         return ResponseEntity.ok(new ApiResponseView<>(new AdminView(result)));
     }
 
+    @GetMapping("/signout")
+    public ResponseEntity<ApiResponseView<AdminView>> logout() {
 
-
-    @PostMapping("/signin")
-    public ResponseEntity<ApiResponseView<AdminView>> login(@RequestBody AdminCreateRequest request) {
         return ResponseEntity.ok().build();
     }
-
-
 
 
 
@@ -92,7 +86,7 @@ public class AdminController {
                 .adminId(request.getAdminId())
                 .adminName(request.getAdminName())
                 .libraryName(request.getLibraryName())
-                .tell(request.getTell())
+                .tel(request.getTel())
                 .email(request.getEmail())
                 .address(request.getAddress())
                 .id(request.getId())

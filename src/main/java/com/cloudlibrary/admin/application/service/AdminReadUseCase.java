@@ -3,9 +3,11 @@ package com.cloudlibrary.admin.application.service;
 import com.cloudlibrary.admin.application.domain.Admin;
 import com.cloudlibrary.admin.ui.requestBody.AdminFindPwRequest;
 import lombok.*;
+import org.springframework.security.core.userdetails.UserDetailsService;
+
 import java.util.List;
 
-public interface AdminReadUseCase {
+public interface AdminReadUseCase extends UserDetailsService {
     List<FindAdminResult> getAdminListAll();
     FindAdminResult getAdmin(AdminFindQuery query);
     FindAdminResult getAdminByEmail(String email);
@@ -31,7 +33,7 @@ public interface AdminReadUseCase {
         private Long adminId;
         private String adminName;
         private String libraryName;
-        private String tell;
+        private String tel;
         private String email;
         private String address;
         private String id;
@@ -42,7 +44,7 @@ public interface AdminReadUseCase {
                     .adminId(admin.getAdminId())
                     .adminName(admin.getAdminName())
                     .libraryName(admin.getLibraryName())
-                    .tell(admin.getTell())
+                    .tel(admin.getTel())
                     .email(admin.getEmail())
                     .address(admin.getAddress())
                     .id(admin.getId())

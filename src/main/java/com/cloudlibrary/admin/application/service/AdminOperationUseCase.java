@@ -17,7 +17,7 @@ public interface AdminOperationUseCase {
     class AdminCreatedCommand {
         private String adminName;
         private String libraryName;
-        private String tell;
+        private String tel;
         private String email;
         private String address;
         private String id;
@@ -33,7 +33,7 @@ public interface AdminOperationUseCase {
         private Long adminId;
         private String adminName;
         private String libraryName;
-        private String tell;
+        private String tel;
         private String email;
         private String address;
         private String id;

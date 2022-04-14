@@ -26,10 +26,3 @@ spring:
   config:
     activate:
       on-profile: prod
-
----
-jwt:
-  header: Authorization
-  #echo 'ssac-msacloud-1-cloudlibrary-jwt-secretkey-base64'|base64
-  secret:c3NhYy1tc2FjbG91ZC0xLWNsb3VkbGlicmFyeS1qd3Qtc2VjcmV0a2V5LWJhc2U2NA==
-  token-validity-in-seconds: 86400

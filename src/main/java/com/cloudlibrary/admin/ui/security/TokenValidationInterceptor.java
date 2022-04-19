@@ -1,4 +1,4 @@
-package com.cloudlibrary.admin.infrastructure.security;
+package com.cloudlibrary.admin.ui.security;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

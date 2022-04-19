@@ -1,12 +1,12 @@
 package com.cloudlibrary.admin.application.service;
 
 import com.cloudlibrary.admin.application.domain.Admin;
-import com.cloudlibrary.admin.application.mapper.AdminMapper;
+import com.cloudlibrary.admin.infrastructure.mapper.AdminMapper;
 import com.cloudlibrary.admin.exception.CloudLibraryException;
 import com.cloudlibrary.admin.exception.MessageType;
 import com.cloudlibrary.admin.infrastructure.persistence.mysql.entity.AdminEntity;
 import com.cloudlibrary.admin.infrastructure.persistence.mysql.repository.AdminEntityRepository;
-import com.cloudlibrary.admin.infrastructure.security.SecurityConfig;
+import com.cloudlibrary.admin.ui.security.SecurityConfig;
 import com.cloudlibrary.admin.ui.requestBody.AdminFindPwRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -14,9 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

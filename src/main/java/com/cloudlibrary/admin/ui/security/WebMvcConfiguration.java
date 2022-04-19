@@ -1,4 +1,4 @@
-package com.cloudlibrary.admin.infrastructure.security;
+package com.cloudlibrary.admin.ui.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;

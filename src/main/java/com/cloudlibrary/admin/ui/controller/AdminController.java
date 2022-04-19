@@ -36,6 +36,11 @@ public class AdminController {
         this.adminReadUseCase = adminReadUseCase;
     }
 
+    @GetMapping("/health-check")
+    public ResponseEntity<String> check() {
+        return ResponseEntity.ok("health-check");
+    }
+
     @GetMapping("")
     public ResponseEntity<ApiResponseView<List<AdminView>>> getAdmins() {
         var results = adminReadUseCase.getAdminListAll();

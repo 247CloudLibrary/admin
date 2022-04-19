@@ -1,4 +1,4 @@
-package com.cloudlibrary.admin.application.mapper;
+package com.cloudlibrary.admin.infrastructure.mapper;
 
 import com.cloudlibrary.admin.application.domain.Admin;
 import com.cloudlibrary.admin.infrastructure.persistence.mysql.entity.AdminEntity;

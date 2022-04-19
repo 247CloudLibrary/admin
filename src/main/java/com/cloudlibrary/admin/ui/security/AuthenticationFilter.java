@@ -1,4 +1,4 @@
-package com.cloudlibrary.admin.infrastructure.security;
+package com.cloudlibrary.admin.ui.security;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -26,9 +26,13 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Slf4j
 public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
+
+//    private static final AntPathRequestMatcher DEFAULT_ANT_PATH_REQUEST_MATCHER = new AntPathRequestMatcher("/v1/admin/login",
+//            "POST");
 
     private final AdminService adminService;
     Environment env;

@@ -56,6 +56,7 @@ public class AdminEntity implements Serializable {
                 .build();
 
     }
+
     public AdminEntity(Admin admin) {
         this.adminId = admin.getAdminId();
         this.adminName = admin.getAdminName();

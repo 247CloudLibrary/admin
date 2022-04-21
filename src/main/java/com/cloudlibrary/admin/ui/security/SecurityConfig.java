@@ -28,13 +28,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable();
+        /*
         http
+
                 .authorizeRequests()
                 .antMatchers("/v1/admin/signup").permitAll()
                 .antMatchers("/v1/admin/findid").permitAll()
                 .antMatchers("/v1/admin/findpw").permitAll()
                 .anyRequest().authenticated();
-
+        */
+        http.authorizeRequests().anyRequest().permitAll();
         http
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)

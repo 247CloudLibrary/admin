@@ -33,7 +33,6 @@ public class TokenValidationInterceptor extends HandlerInterceptorAdapter {
         } catch (Exception e) {
             returnValue = false;
         }
-
         if (subject == null || subject.isEmpty())
             returnValue = false;
 
@@ -47,13 +46,14 @@ public class TokenValidationInterceptor extends HandlerInterceptorAdapter {
         String authorizationHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
         if (authorizationHeader == null) {
             throw new AccessDeniedException("인증 정보 누락");
+
         }
 
         String jwt = authorizationHeader.replace("Bearer", "").trim();
         if (!isJwtValid(jwt)) {
             throw new AccessDeniedException("인증 오류");
-        }
 
+        }
         return super.preHandle(request, response, handler);
     }
 }

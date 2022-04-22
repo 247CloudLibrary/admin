@@ -26,13 +26,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Slf4j
 public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
-
-//    private static final AntPathRequestMatcher DEFAULT_ANT_PATH_REQUEST_MATCHER = new AntPathRequestMatcher("/v1/admin/login",
-//            "POST");
 
     private final AdminService adminService;
     Environment env;
@@ -43,6 +39,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
         this.adminService = adminService;
         this.env = env;
     }
+
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
             throws AuthenticationException {
@@ -61,7 +58,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
                                             Authentication authResult) throws IOException, ServletException {
         String userName = ((User) authResult.getPrincipal()).getUsername();
-        AdminReadUseCase.FindAdminResult findAdminResult = adminService.getAdminByEmail(userName);
+        AdminReadUseCase.FindAdminResult findAdminResult = adminService.getAdminById(userName);
 
         String token = Jwts.builder()
                 .setSubject(findAdminResult.getId())
@@ -77,6 +74,5 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
         response.addHeader("userId", findAdminResult.getId());
         response.addHeader("libraryName", findAdminResult.getLibraryName());
         response.addHeader("email", findAdminResult.getEmail());
-
     }
 }

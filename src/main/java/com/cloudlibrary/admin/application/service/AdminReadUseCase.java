@@ -11,6 +11,7 @@ public interface AdminReadUseCase extends UserDetailsService {
     List<FindAdminResult> getAdminListAll();
     FindAdminResult getAdmin(AdminFindQuery query);
     FindAdminResult getAdminByEmail(String email);
+    FindAdminResult getAdminById(String id);
     Long isValidIdAndEmail(AdminFindPwRequest request);
 
     @NoArgsConstructor

@@ -109,6 +109,17 @@ public class AdminService implements AdminOperationUseCase, AdminReadUseCase {
     }
 
     @Override
+    public FindAdminResult getAdminById(String id) {
+        Optional<AdminEntity> result = adminMapper.findAdminById(id);
+
+        if(result.isEmpty()) {
+            throw new CloudLibraryException(MessageType.NOT_FOUND);
+        }
+
+        return FindAdminResult.findByAdmin((result.get().toAdmin()));
+    }
+
+    @Override
     public Long isValidIdAndEmail(AdminFindPwRequest request) {
         Optional<AdminEntity> resultId = adminMapper.findAdminById(request.getId());
         Optional<Admin> resultEmail = adminMapper.findAdminByEmail(request.getEmail());
@@ -127,7 +138,7 @@ public class AdminService implements AdminOperationUseCase, AdminReadUseCase {
         if (resultId == null) {
             throw new UsernameNotFoundException(username);
         }
-        return new User(resultId.get().getEmail(), resultId.get().getEncryptedPw(),
+        return new User(resultId.get().getId(), resultId.get().getEncryptedPw(),
                 true, true, true, true, new ArrayList<>());
     }
 }

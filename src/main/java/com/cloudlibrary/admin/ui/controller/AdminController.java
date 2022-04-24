@@ -36,6 +36,13 @@ public class AdminController {
         this.adminReadUseCase = adminReadUseCase;
     }
 
+    @PostMapping("/signin")
+    public String signin() {
+        return "abc";
+    }
+
+
+
     @GetMapping("/health-check")
     public ResponseEntity<String> check() {
         return ResponseEntity.ok("health-check");

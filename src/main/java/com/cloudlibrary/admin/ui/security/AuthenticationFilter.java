@@ -36,6 +36,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     @Autowired
     public AuthenticationFilter(AuthenticationManager authenticationManager, AdminService adminService, Environment env) {
         super.setAuthenticationManager(authenticationManager);
+        super.setFilterProcessesUrl("/v1/admin/signin");
         this.adminService = adminService;
         this.env = env;
     }

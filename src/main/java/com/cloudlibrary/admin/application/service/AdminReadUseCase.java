@@ -50,7 +50,6 @@ public interface AdminReadUseCase extends UserDetailsService {
                     .address(admin.getAddress())
                     .id(admin.getId())
                     .build();
-
         }
     }
 }

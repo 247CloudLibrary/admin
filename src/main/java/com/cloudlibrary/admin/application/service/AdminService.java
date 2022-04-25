@@ -16,6 +16,8 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +54,7 @@ public class AdminService implements AdminOperationUseCase, AdminReadUseCase {
         return FindAdminResult.findByAdmin((result.get()));
     }
 
+    @Transactional(isolation=Isolation.READ_COMMITTED)
     @Override
     public FindAdminResult createAdmin(AdminCreatedCommand command) {
         //command -> Admin -> Entity
@@ -72,6 +75,7 @@ public class AdminService implements AdminOperationUseCase, AdminReadUseCase {
         return FindAdminResult.findByAdmin(admin);
     }
 
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     @Override
     public FindAdminResult updateAdmin(AdminUpdateCommand command) {
         Optional<AdminEntity> adminEntity = adminEntityRepository.findById(command.getAdminId());
@@ -90,6 +94,7 @@ public class AdminService implements AdminOperationUseCase, AdminReadUseCase {
         return FindAdminResult.findByAdmin(admin);
     }
 
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     @Override
     public void deleteAdmin(AdminDeleteCommand command) {
         Optional<AdminEntity> adminEntity = adminEntityRepository.findById(command.getAdminId());

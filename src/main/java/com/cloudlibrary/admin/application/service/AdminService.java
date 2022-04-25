@@ -92,9 +92,8 @@ public class AdminService implements AdminOperationUseCase, AdminReadUseCase {
 
     @Override
     public void deleteAdmin(AdminDeleteCommand command) {
-        AdminEntity adminEntity = AdminEntity.builder()
-                .adminId(command.getAdminId()).build();
-        adminEntityRepository.delete(adminEntity);
+        Optional<AdminEntity> adminEntity = adminEntityRepository.findById(command.getAdminId());
+        adminEntityRepository.delete(adminEntity.get());
     }
 
     @Override

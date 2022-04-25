@@ -9,8 +9,6 @@ import javax.persistence.Entity;
 import java.io.Serializable;
 
 @DynamicUpdate
-@AllArgsConstructor
-@Builder
 @Setter
 @Getter
 @NoArgsConstructor

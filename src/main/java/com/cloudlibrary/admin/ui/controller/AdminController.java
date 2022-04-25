@@ -36,13 +36,6 @@ public class AdminController {
         this.adminReadUseCase = adminReadUseCase;
     }
 
-    @PostMapping("/signin")
-    public String signin() {
-        return "abc";
-    }
-
-
-
     @GetMapping("/health-check")
     public ResponseEntity<String> check() {
         return ResponseEntity.ok("health-check");
@@ -97,6 +90,9 @@ public class AdminController {
 
     @PatchMapping("/update-state")
     public ResponseEntity<ApiResponseView<AdminView>> updateAdmin(@RequestBody AdminUpdateRequest request) {
+        if (ObjectUtils.isEmpty(request)) {
+            throw new CloudLibraryException(MessageType.BAD_REQUEST);
+        }
 
         var command = AdminOperationUseCase.AdminUpdateCommand.builder()
                 .adminId(request.getAdminId())

@@ -1,6 +1,7 @@
 package com.cloudlibrary.admin.ui.security;
 
 import com.cloudlibrary.admin.application.service.AdminService;
+import com.cloudlibrary.admin.infrastructure.configuration.CorsConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
@@ -18,6 +19,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     AdminService adminService;
     @Autowired
     Environment env;
+    @Autowired
+    private CorsConfig corsConfig;
 
     @Bean
     static public PasswordEncoder passwordEncoder() {
@@ -27,9 +30,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .addFilter(corsConfig.corsFilter())
+                .httpBasic().disable()
                 .csrf().disable();
         http
                 .authorizeRequests()
+                .antMatchers("/v1/admin/health-check").permitAll()
                 .antMatchers("/v1/admin/signup").permitAll()
                 .antMatchers("/v1/admin/findid").permitAll()
                 .antMatchers("/v1/admin/findpw").permitAll();

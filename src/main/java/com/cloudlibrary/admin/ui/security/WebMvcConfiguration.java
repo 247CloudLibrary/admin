@@ -16,6 +16,7 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new TokenValidationInterceptor(env))
                 .addPathPatterns("/**")
+                .excludePathPatterns("/v1/admin/health-check")
                 .excludePathPatterns("/v1/admin/signup")
                 .excludePathPatterns("/v1/admin/findid")
                 .excludePathPatterns("/v1/admin/findpw");

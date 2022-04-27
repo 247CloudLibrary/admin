@@ -1,6 +1,8 @@
 package com.cloudlibrary.admin.ui.security;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Date;
 
 import javax.servlet.FilterChain;
@@ -73,7 +75,11 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
         response.addHeader("token", token);
         response.addHeader("adminId", Long.toString(findAdminResult.getAdminId()));
         response.addHeader("userId", findAdminResult.getId());
-        response.addHeader("libraryName", findAdminResult.getLibraryName());
+        byte[] targetBytes = findAdminResult.getLibraryName().getBytes();
+        Base64.Encoder encoder = Base64.getEncoder();
+        byte[] encodedBytes = encoder.encode(targetBytes);
+        String coverted = new String(targetBytes, StandardCharsets.UTF_8);
+        response.addHeader("libraryName", coverted);
         response.addHeader("email", findAdminResult.getEmail());
     }
 }

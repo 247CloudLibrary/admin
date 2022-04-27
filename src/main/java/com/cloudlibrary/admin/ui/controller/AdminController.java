@@ -64,6 +64,7 @@ public class AdminController {
 
         var command = AdminOperationUseCase.AdminCreatedCommand.builder()
                 .adminName(request.getAdminName())
+                .libraryId(request.getLibraryId())
                 .libraryName(request.getLibraryName())
                 .tel(request.getTel())
                 .email(request.getEmail())
@@ -96,6 +97,7 @@ public class AdminController {
         var command = AdminOperationUseCase.AdminUpdateCommand.builder()
                 .adminId(request.getAdminId())
                 .adminName(request.getAdminName())
+                .libraryId(request.getLibraryId())
                 .libraryName(request.getLibraryName())
                 .tel(request.getTel())
                 .email(request.getEmail())

@@ -11,6 +11,7 @@ import lombok.ToString;
 @NoArgsConstructor
 public class AdminCreateRequest {
     private String adminName;
+    private Long libraryId;
     private String libraryName;
     private String tel;
     private String email;

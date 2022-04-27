@@ -24,6 +24,9 @@ public class AdminEntity implements Serializable {
     @Column(nullable = false)
     private String adminName;
 
+    @Column(nullable = false)
+    private Long libraryId;
+
     @Column(nullable=false)
     private String libraryName;
 
@@ -46,6 +49,7 @@ public class AdminEntity implements Serializable {
         return Admin.builder()
                 .adminId(getAdminId())
                 .adminName(getAdminName())
+                .libraryId(getLibraryId())
                 .libraryName(getLibraryName())
                 .tel(getTel())
                 .email(getEmail())
@@ -58,6 +62,7 @@ public class AdminEntity implements Serializable {
     public AdminEntity(Admin admin) {
         this.adminId = admin.getAdminId();
         this.adminName = admin.getAdminName();
+        this.libraryId = admin.getLibraryId();
         this.libraryName = admin.getLibraryName();
         this.tel = admin.getTel();
         this.email = admin.getEmail();

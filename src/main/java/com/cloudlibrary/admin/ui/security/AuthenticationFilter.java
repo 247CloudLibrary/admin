@@ -72,14 +72,11 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
         Cookie setCookie = new Cookie("token", token);
         response.addCookie(setCookie);
-        response.addHeader("token", token);
-        response.addHeader("adminId", Long.toString(findAdminResult.getAdminId()));
-        response.addHeader("userId", findAdminResult.getId());
-        byte[] targetBytes = findAdminResult.getLibraryName().getBytes();
-        Base64.Encoder encoder = Base64.getEncoder();
-        byte[] encodedBytes = encoder.encode(targetBytes);
-        String coverted = new String(targetBytes, StandardCharsets.UTF_8);
-        response.addHeader("libraryName", coverted);
-        response.addHeader("email", findAdminResult.getEmail());
+
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+
+        String result = new ObjectMapper().writeValueAsString(findAdminResult);
+        response.getWriter().write(result);
     }
 }

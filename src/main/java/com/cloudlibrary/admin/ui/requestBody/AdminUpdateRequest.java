@@ -12,6 +12,7 @@ import lombok.ToString;
 public class AdminUpdateRequest {
     private Long adminId;
     private String adminName;
+    private Long libraryId;
     private String libraryName;
     private String tel;
     private String email;

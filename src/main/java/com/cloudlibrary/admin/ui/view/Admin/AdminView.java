@@ -19,6 +19,10 @@ public class AdminView {
     private final Long adminId;
     @ApiModelProperty(value = "관리자 이름")
     private final String adminName;
+
+    @ApiModelProperty(value = "도서관 ID")
+    private final Long libraryId;
+
     @ApiModelProperty(value = "도서관 이름")
     private final String libraryName;
     @ApiModelProperty(value = "전화번호")
@@ -36,6 +40,7 @@ public class AdminView {
     public AdminView(AdminReadUseCase.FindAdminResult result) {
         this.adminId = result.getAdminId();
         this.adminName = result.getAdminName();
+        this.libraryId = result.getLibraryId();
         this.libraryName = result.getLibraryName();
         this.tel = result.getTel();
         this.email = result.getEmail();

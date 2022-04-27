@@ -33,6 +33,7 @@ public interface AdminReadUseCase extends UserDetailsService {
     class FindAdminResult {
         private Long adminId;
         private String adminName;
+        private Long libraryId;
         private String libraryName;
         private String tel;
         private String email;
@@ -44,6 +45,7 @@ public interface AdminReadUseCase extends UserDetailsService {
             return FindAdminResult.builder()
                     .adminId(admin.getAdminId())
                     .adminName(admin.getAdminName())
+                    .libraryId(admin.getLibraryId())
                     .libraryName(admin.getLibraryName())
                     .tel(admin.getTel())
                     .email(admin.getEmail())

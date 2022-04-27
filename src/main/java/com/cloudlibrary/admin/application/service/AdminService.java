@@ -60,6 +60,7 @@ public class AdminService implements AdminOperationUseCase, AdminReadUseCase {
         //command -> Admin -> Entity
         Admin admin = Admin.builder()
                 .adminName(command.getAdminName())
+                .libraryId(command.getLibraryId())
                 .libraryName(command.getLibraryName())
                 .tel(command.getTel())
                 .email(command.getEmail())

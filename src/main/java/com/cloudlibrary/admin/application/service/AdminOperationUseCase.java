@@ -16,6 +16,7 @@ public interface AdminOperationUseCase {
     @ToString
     class AdminCreatedCommand {
         private String adminName;
+        private Long libraryId;
         private String libraryName;
         private String tel;
         private String email;
@@ -32,6 +33,7 @@ public interface AdminOperationUseCase {
     class AdminUpdateCommand {
         private Long adminId;
         private String adminName;
+        private Long libraryId;
         private String libraryName;
         private String tel;
         private String email;

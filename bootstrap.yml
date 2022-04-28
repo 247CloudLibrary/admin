@@ -1,6 +1,6 @@
 aws:
   secretsmanager:
-    name: cloudlibrary/rds/admin/mysql
+    name: cloudlibrary/rds/auth/mysql
 cloud:
   aws:
     region:

@@ -136,6 +136,11 @@ public class AdminService implements AdminOperationUseCase, AdminReadUseCase {
 
     }
 
+    @Override
+    public List<FindAuthResult> getAuthListAll() {
+        return adminMapper.findAuthAll().stream().map(FindAuthResult::findByAuth).collect(Collectors.toList());
+    }
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

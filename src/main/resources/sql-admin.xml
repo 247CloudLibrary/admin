@@ -27,4 +27,10 @@
         ]]>
     </select>
 
+    <select id="findAuthAll" resultType="com.cloudlibrary.admin.application.domain.Auth">
+        <![CDATA[
+        select * from auth
+        ]]>
+    </select>
+
 </mapper>

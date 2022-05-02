@@ -1,5 +1,6 @@
 package com.cloudlibrary.admin.ui.controller;
 
+import com.cloudlibrary.admin.application.domain.Auth;
 import com.cloudlibrary.admin.application.service.AdminOperationUseCase;
 import com.cloudlibrary.admin.application.service.AdminReadUseCase;
 import com.cloudlibrary.admin.exception.CloudLibraryException;
@@ -7,6 +8,7 @@ import com.cloudlibrary.admin.exception.MessageType;
 import com.cloudlibrary.admin.ui.requestBody.*;
 import com.cloudlibrary.admin.ui.view.Admin.AdminCompactView;
 import com.cloudlibrary.admin.ui.view.Admin.AdminView;
+import com.cloudlibrary.admin.ui.view.Admin.AuthView;
 import com.cloudlibrary.admin.ui.view.ApiResponseView;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
@@ -40,8 +42,15 @@ public class AdminController {
         return ResponseEntity.ok("health-check");
     }
 
+    @GetMapping("/auth-view")
+    public ResponseEntity<ApiResponseView<List<AuthView>>> getAdmins() {
+        var results = adminReadUseCase.getAuthListAll();
+
+        return ResponseEntity.ok(new ApiResponseView<>(results.stream().map(AuthView::new).collect(Collectors.toList())));
+    }
+
     @GetMapping("")
-    public ResponseEntity<ApiResponseView<List<AdminView>>> getAdmins() {
+    public ResponseEntity<ApiResponseView<List<AdminView>>> getAuths() {
         var results = adminReadUseCase.getAdminListAll();
 
         return ResponseEntity.ok(new ApiResponseView<>(results.stream().map(AdminView::new).collect(Collectors.toList())));

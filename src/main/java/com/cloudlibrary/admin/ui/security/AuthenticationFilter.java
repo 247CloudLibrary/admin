@@ -72,6 +72,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
         Cookie setCookie = new Cookie("token", token);
         response.addCookie(setCookie);
+        response.addHeader("token", token);
 
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
